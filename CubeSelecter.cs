@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class CubeSelecter : MonoBehaviour
 {
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private float _radiusExplosion;
-
+    [SerializeField] private LayerMask layerMask;    
 
     private float _maxRayLength = 100f;
-
     private int _maxChanceClone = 101;
     private CubeCreator _cubeCreator;
 
@@ -40,9 +37,9 @@ public class CubeSelecter : MonoBehaviour
         }
     }
 
-    private List<Cube> GetNearCubes()
+    private List<Cube> GetNearCubes(Cube cubeParent)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, _radiusExplosion);
+        Collider[] hits = Physics.OverlapSphere(cubeParent.transform.position, cubeParent.Explosion.RadiusExplosion);
 
         List<Cube> cubes = new List<Cube>();
 
@@ -61,12 +58,11 @@ public class CubeSelecter : MonoBehaviour
     {
         if (Random.Range(0, _maxChanceClone) <= cube.ChanceClone)
         {
-            List<Cube> cubes = _cubeCreator.CreatCubes(cube);
-            cube.Explosion.StartExplosion(cubes, _radiusExplosion);
+            _cubeCreator.CreatCubes(cube);
         }
         else
         {
-            cube.Explosion.StartExplosion(GetNearCubes(), _radiusExplosion);
+            cube.Explosion.StartExplosion(GetNearCubes(cube));
         }
 
         Destroy(cube.gameObject);

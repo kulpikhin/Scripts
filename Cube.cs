@@ -22,10 +22,11 @@ public class Cube : MonoBehaviour
         ChangeColor();
     }
 
-    public void OnSpawn(int chanceCloneParent, Vector3 scaleParent)
+    public void OnSpawn(int chanceCloneParent, Vector3 scaleParent, float radiusExplosion, float forceExplosion)
     {
         transform.localScale = scaleParent/ _scaleMultiplier;
         ChanceClone = chanceCloneParent/ _scaleMultiplier;
+        Explosion.IncreaseExplosion(radiusExplosion, forceExplosion);
     }
 
     private void ChangeColor()

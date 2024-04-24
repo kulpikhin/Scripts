@@ -18,7 +18,7 @@ public class CubeCreator : MonoBehaviour
         for (int i = 0; i < cloneCount; i++)
         {
             Cube cube = Instantiate(_cubePrefab, cubeParent.transform.position, Quaternion.identity);
-            cube.OnSpawn(cubeParent.ChanceClone, cubeParent.transform.localScale);
+            cube.OnSpawn(cubeParent.ChanceClone, cubeParent.transform.localScale, cubeParent.Explosion.RadiusExplosion, cubeParent.Explosion.ForceExplosion);
             cubes.Add(cube);
         }
 
