@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
+[RequireComponent(typeof(Explode))]
+[RequireComponent(typeof(Renderer))]
 public class Cube : MonoBehaviour
 {
     private int _scaleMultiplier = 2;
@@ -24,8 +23,8 @@ public class Cube : MonoBehaviour
 
     public void OnSpawn(int chanceCloneParent, Vector3 scaleParent, float radiusExplosion, float forceExplosion)
     {
-        transform.localScale = scaleParent/ _scaleMultiplier;
-        ChanceClone = chanceCloneParent/ _scaleMultiplier;
+        transform.localScale = scaleParent / _scaleMultiplier;
+        ChanceClone = chanceCloneParent / _scaleMultiplier;
         Explosion.IncreaseExplosion(radiusExplosion, forceExplosion);
     }
 
